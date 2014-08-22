@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: super-moonbeam_development
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: super-moonbeam_test
+
+production:
+  <<: *default
+  database: super-moonbeam_production
+  username: super-moonbeam
+  password: <%= ENV['SUPER-MOONBEAM_DATABASE_PASSWORD'] %>
