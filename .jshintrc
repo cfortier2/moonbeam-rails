@@ -1,0 +1,19 @@
+{
+  "boss": true,
+  "browser": true,
+  "curly": true,
+  "esnext": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "expr": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "trailing": true,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "Ember": false,
+    "DS": false
+  }
+}
