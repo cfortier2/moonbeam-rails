@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.create([
+  { username: "Attamusc", email: "sean@attamusc.com", name: "Sean Dunn", avatar: "https://avatars.githubusercontent.com/u/868737?v=2", remember_token: SecureRandom.hex(20) }
+])
+
+BuildRequest.create([
+  { user: User.where(username: "Attamusc") }
+])

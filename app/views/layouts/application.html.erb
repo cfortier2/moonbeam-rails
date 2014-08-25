@@ -8,6 +8,42 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <span class="navbar-brand">Moonbeam</span>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <% if signed_in? %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to "Dashboard", root_path %></li>
+              <li><%= link_to "Pulls", pulls_path %></li>
+              <li><p class="navbar-text">Current Deployed SHA: <a href="https://github.com/behance/be.net/commit/<%= deployed_sha %>" class="navbar-link"><%= deployed_sha %></a></p></li>
+            </ul>
+          <% end %>
+          <div class="navbar-right">
+            <% if !signed_in? %>
+              <span><a href="/auth/github" class="btn btn-default navbar-btn">Login</a></span>
+            <% else %>
+              <span class="navbar-text"><%= current_user.username %></span>
+              <span>
+                <%= link_to "Logout", logout_path, class: "btn btn-default navbar-btn" %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="flashes">
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+        <% end -%>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

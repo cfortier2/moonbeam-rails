@@ -1,0 +1,52 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.navbar {
+  border-radius: 0;
+}
+
+.container header h1 {
+  text-align: center;
+}
+
+.build-queue header {
+  @include clearfix();
+
+  .queue-actions {
+    float: right;
+  }
+}
+
+.pull-table {
+  & > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  .opener {
+    width: 180px;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .actions {
+    width: 151px;
+  }
+}
+
+.list-group img {
+  border-radius: 4px;
+}
+
+.request-name {
+  font-weight: 700;
+  margin-left: 20px;
+}
+
+.request-created {
+  font-style: italic;
+  float: right;
+}
+
+

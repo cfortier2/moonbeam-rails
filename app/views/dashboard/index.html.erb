@@ -1,0 +1,60 @@
+<div class="build-stats col-sm-6">
+  <div class="in-progress">
+    <header>
+      <h1>In Progress</h1>
+    </header>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div>
+          <img src="<%= @active_request.user.avatar %>" alt="<%= @active_request.user.name %>" width="40" height="40" />
+          <span class="request-name"><%= @active_request.user.name %></span>
+          <span class="request-created"><%= time_ago_in_words(@active_request.created_at) %></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="recent-builds">
+    <header>
+      <h1>Recent Builds</h1>
+    </header>
+  </div>
+</div>
+
+<div class="build-queue col-sm-6">
+  <div class="in-control">
+    <header>
+      <h1>In Control</h1>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div>
+            <img src="<%= @active_request.user.avatar %>" alt="<%= @active_request.user.name %>" width="40" height="40" />
+            <span class="request-name"><%= @active_request.user.name %></span>
+            <span class="request-created"><%= time_ago_in_words(@active_request.created_at) %></span>
+          </div>
+        </li>
+      </ul>
+    </header>
+  </div>
+
+  <header>
+    <h1>Build Queue</h1>
+    <ul class="list-inline queue-actions">
+      <li><%= link_to "Jump", jump_queue_path, class: "btn btn-warning" %></li>
+      <li><%= link_to "Join", join_queue_path, class: "btn btn-primary" %></li>
+    </ul>
+  </header>
+
+  <ul class="list-group">
+    <% @build_queue.each do |request| %>
+      <li class="list-group-item<% if request.emergency %> list-group-item-warning<% end %>">
+        <div>
+          <img src="<%= request.user.avatar %>" alt="<%= request.user.name %>" width="40" height="40" />
+          <span class="request-name"><%= request.user.name %></span>
+          <span class="request-created"><%= time_ago_in_words(request.created_at) %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

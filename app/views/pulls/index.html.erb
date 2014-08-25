@@ -1,0 +1,39 @@
+<table class="pull-table table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Branch</th>
+      <th>Opener</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pull_requests.each do |pr| %>
+      <tr>
+        <td><%= pr.number %></td>
+        <td><%= pr.title %></td>
+        <td><%= pr.branch_name %></td>
+        <td class="opener"><img src="<%= pr.opener_image %>" alt="<%= pr.opener %>" width="20" height="20"><%= pr.opener %></td>
+        <td class="actions">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default">Merge</button>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Build
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">d2devhance</a></li>
+                <li><a href="#">s2stagehance</a></li>
+                <li><a href="#">hancearmstrong</a></li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
