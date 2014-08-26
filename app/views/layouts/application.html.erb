@@ -22,7 +22,7 @@
                 <li><%= link_to "Pulls", pulls_path %></li>
                 <li><%= link_to "Deploy", deploy_path %></li>
               <% end %>
-              <li><p class="navbar-text">Current Deployed SHA: <a href="https://github.com/behance/be.net/commit/<%= deployed_sha %>" class="navbar-link"><%= deployed_sha %></a></p></li>
+              <li><p class="navbar-text">Current Deployed SHA: <a href="https://github.com/behance/be.net/commit/<%= deployed_sha %>" target="_blank" class="navbar-link"><%= deployed_sha %></a></p></li>
             </ul>
           <% end %>
           <div class="navbar-right">
