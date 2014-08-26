@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/pulls", to: "pulls#index"
   post "/pulls/merge", to: "pulls#merge", as: "merge_pull_request"
 
+  get "/deploy", to: "deploys#new"
+
   # Catch-all redirect
   get "*path", to: "dashboard#index"
 end

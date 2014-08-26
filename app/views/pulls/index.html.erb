@@ -11,13 +11,15 @@
   <tbody>
     <% @pull_requests.each do |pr| %>
       <tr>
-        <td><%= pr.number %></td>
+        <td><%= link_to pr.number, "https://github.com/behance/be.net/pull/#{pr.number}", target: "_blank" %></td>
         <td><%= pr.title %></td>
         <td><%= pr.branch_name %></td>
         <td class="opener"><img src="<%= pr.opener_image %>" alt="<%= pr.opener %>" width="20" height="20"><%= pr.opener %></td>
         <td class="actions">
-          <% form_tag %>
-          <%= link_to "Merge", merge_pull_request_path, class: "btn btn-block btn-default" %>
+          <%= form_tag merge_pull_request_path, method: "post" do %>
+            <%= hidden_field_tag "pull_request_number", pr.number %>
+            <%= submit_tag "Merge", class: "btn btn-block btn-default" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
