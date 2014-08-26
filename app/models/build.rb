@@ -17,8 +17,18 @@
 #  index_builds_on_user_id         (user_id)
 #
 
-require 'spec_helper'
+class Build < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :environment
 
-describe Build do
-  pending "add some examples to (or delete) #{__FILE__}"
+  scope :pending, -> { where(finished_at: nil) }
+  scope :finished, -> { where.not(finished_at: nil) }
+
+  def self.current
+    pending.first
+  end
+
+  def short_sha
+    sha[0...7]
+  end
 end

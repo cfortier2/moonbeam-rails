@@ -9,11 +9,13 @@
   text-align: center;
 }
 
-.build-queue header {
-  @include clearfix();
+.queue header {
+  position: relative;
 
   .queue-actions {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 
@@ -47,6 +49,10 @@
 .request-created {
   font-style: italic;
   float: right;
+}
+
+.dashboard-section {
+  margin-bottom: 40px;
 }
 
 

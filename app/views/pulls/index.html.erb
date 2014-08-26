@@ -16,21 +16,8 @@
         <td><%= pr.branch_name %></td>
         <td class="opener"><img src="<%= pr.opener_image %>" alt="<%= pr.opener %>" width="20" height="20"><%= pr.opener %></td>
         <td class="actions">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default">Merge</button>
-
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Build
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">d2devhance</a></li>
-                <li><a href="#">s2stagehance</a></li>
-                <li><a href="#">hancearmstrong</a></li>
-              </ul>
-            </div>
-          </div>
+          <% form_tag %>
+          <%= link_to "Merge", merge_pull_request_path, class: "btn btn-block btn-default" %>
         </td>
       </tr>
     <% end %>

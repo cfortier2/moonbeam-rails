@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   get "/auth/github/callback", to: "sessions#create"
 
-  get "/queue/join", to: "build_requests#join", as: "join_queue"
-  get "/queue/jump", to: "build_requests#jump", as: "jump_queue"
+  get "/queue/join", to: "build_queue#join", as: "join_queue"
+  get "/queue/jump", to: "build_queue#jump", as: "jump_queue"
 
   get "/pulls", to: "pulls#index"
   post "/pulls/merge", to: "pulls#merge", as: "merge_pull_request"

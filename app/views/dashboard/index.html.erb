@@ -1,31 +1,62 @@
 <div class="build-stats col-sm-6">
-  <div class="in-progress">
+  <div class="dashboard-section in-progress">
     <header>
       <h1>In Progress</h1>
     </header>
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div>
-          <img src="<%= @active_request.user.avatar %>" alt="<%= @active_request.user.name %>" width="40" height="40" />
-          <span class="request-name"><%= @active_request.user.name %></span>
-          <span class="request-created"><%= time_ago_in_words(@active_request.created_at) %></span>
-        </div>
-      </li>
-    </ul>
+    <% if @active_build %>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div>
+            <img src="<%= @active_build.user.avatar %>" alt="<%= @active_build.user.name %>" width="40" height="40" />
+            <span class="build-user-name"><%= @active_build.user.name %></span>
+            <a href="https://github.com/behance/be.net/commit/<%= @active_build.sha %>"><%= @active_build.short_sha %></a>
+            <span class="build-environment"><%= @active_build.environment.name %></span>
+            <span class="build-created"><%= time_ago_in_words(@active_build.created_at) %></span>
+          </div>
+        </li>
+      </ul>
+    <% else %>
+      <div class="well">
+        <span>No builds are currently taking place</span>
+      </div>
+    <% end %>
   </div>
 
-  <div class="recent-builds">
+  <div class="dashboard-section recent-builds">
     <header>
       <h1>Recent Builds</h1>
     </header>
+
+    <% if !@recent_builds.empty? %>
+      <ul class="list-group">
+        <% @recent_builds.each do |build| %>
+          <li class="list-group-item">
+            <div>
+              <img src="<%= build.user.avatar %>" alt="<%= build.user.name %>" width="40" height="40" />
+              <span class="build-user-name"><%= build.user.name %></span>
+              <a href="https://github.com/behance/be.net/commit/<%= build.sha %>"><%= build.short_sha %></a>
+              <span class="build-environment"><%= build.environment.name %></span>
+              <span class="build-finished"><%= time_ago_in_words(build.finished_at) %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="well">
+        <span>No builds are currently taking place</span>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <div class="build-queue col-sm-6">
-  <div class="in-control">
+  <div class="dashboard-section in-control">
     <header>
       <h1>In Control</h1>
+    </header>
+
+    <% if @active_request %>
       <ul class="list-group">
         <li class="list-group-item">
           <div>
@@ -35,26 +66,38 @@
           </div>
         </li>
       </ul>
-    </header>
+    <% else %>
+      <div class="well">
+        <span>No one is in control</span>
+      </div>
+    <% end %>
   </div>
 
-  <header>
-    <h1>Build Queue</h1>
-    <ul class="list-inline queue-actions">
-      <li><%= link_to "Jump", jump_queue_path, class: "btn btn-warning" %></li>
-      <li><%= link_to "Join", join_queue_path, class: "btn btn-primary" %></li>
-    </ul>
-  </header>
+  <div class="dashboard-section queue">
+    <header>
+      <h1>Build Queue</h1>
+      <ul class="list-inline queue-actions">
+        <li><%= link_to "Jump", jump_queue_path, class: "btn btn-warning" %></li>
+        <li><%= link_to "Join", join_queue_path, class: "btn btn-primary" %></li>
+      </ul>
+    </header>
 
-  <ul class="list-group">
-    <% @build_queue.each do |request| %>
-      <li class="list-group-item<% if request.emergency %> list-group-item-warning<% end %>">
-        <div>
-          <img src="<%= request.user.avatar %>" alt="<%= request.user.name %>" width="40" height="40" />
-          <span class="request-name"><%= request.user.name %></span>
-          <span class="request-created"><%= time_ago_in_words(request.created_at) %></span>
-        </div>
-      </li>
+    <% if !@build_queue.empty? %>
+      <ul class="list-group">
+        <% @build_queue.each do |request| %>
+          <li class="list-group-item<% if request.emergency %> list-group-item-warning<% end %>">
+            <div>
+              <img src="<%= request.user.avatar %>" alt="<%= request.user.name %>" width="40" height="40" />
+              <span class="request-name"><%= request.user.name %></span>
+              <span class="request-created"><%= time_ago_in_words(request.created_at) %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="well">
+        <span>No one is in the queue</span>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>

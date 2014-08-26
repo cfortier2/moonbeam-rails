@@ -1,8 +1,9 @@
 class DashboardController < ApplicationController
   def index
-    @builds = []
+    @active_build = Build.current
+    @recent_builds = Build.finished
 
-    @active_request = BuildRequest.active_weighted
-    @build_queue = BuildRequest.pending_weighted
+    @active_request = ControlSession.current
+    @build_queue = BuildRequest.weighted
   end
 end

@@ -1,4 +1,6 @@
 class PullsController < ApplicationController
+  before_filter :block_unless_controlling
+
   def index
     @pull_requests = GithubApi.new(session[:github_token]).open_prs
   end

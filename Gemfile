@@ -31,6 +31,7 @@ group :development do
   gem "thin"
   gem "spring"
   gem "spring-commands-rspec"
+  gem "annotate", "~> 2.6.5"
   gem "meta_request"
   gem "better_errors"
   gem "binding_of_caller"
