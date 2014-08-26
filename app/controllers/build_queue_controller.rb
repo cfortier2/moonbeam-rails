@@ -1,13 +1,13 @@
 class BuildQueueController < ApplicationController
   def join
-    enqueuer.enqueue(current_user)
-    flash[:success] = "Joined the Build Queue"
+    message = enqueuer.enqueue(current_user)
+    flash[message[:type]] = message[:content]
     redirect_to root_path
   end
 
   def jump
     enqueuer.enqueue(current_user, emergency: true)
-    flash[:success] = "Jumped the Build Queue"
+    flash[message[:type]] = message[:content]
     redirect_to root_path
   end
 
